@@ -56,7 +56,7 @@ public class SelectionScreen extends GuiScreen {
             }
             
             else {
-                currentButton.setPosition(0 + currentButton.getWidth()*i, 0); 
+                currentButton.setPosition(0 + currentButton.getWidth()*(i-5), 0); 
             }
             
             i++;
