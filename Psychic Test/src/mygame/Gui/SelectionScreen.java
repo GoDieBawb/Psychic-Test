@@ -6,12 +6,9 @@ package mygame.Gui;
 
 import mygame.GameManager;
 import com.jme3.input.event.MouseButtonEvent;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector4f;
 import java.util.ArrayList;
-import tonegod.gui.core.Element;
 
 /**
  *
@@ -30,12 +27,14 @@ public class SelectionScreen extends GuiScreen {
     
     private void createButtons() {
     
-        buttonList = new ArrayList();
-        int i = 0;
+        buttonList  = new ArrayList();
+        Vector2f v1 = new Vector2f();
+        Vector4f v2 = new Vector4f();
+        int i       = 0;
         
         while (true) {
             
-            SymbolButton currentButton = new SymbolButton(manager.screen, "Button" + i, new Vector2f(12f,12f)) {
+            SymbolButton currentButton = new SymbolButton(manager.screen, "Button" + i, v1, v1, v2, "Textures/" + manager.getMatList().get(i) + ".png") {
             
                 @Override
                 public void onButtonMouseLeftUp(MouseButtonEvent evt, boolean toggle) {
@@ -47,7 +46,7 @@ public class SelectionScreen extends GuiScreen {
                 
             };
             
-            currentButton.setValue(assignValue(i));
+            currentButton.setValue(manager.getMatList().get(i));
             buttonList.add(currentButton);
             manager.screen.addElement(currentButton);
             currentButton.hide();
@@ -58,65 +57,15 @@ public class SelectionScreen extends GuiScreen {
                 currentButton.setPosition(0 + currentButton.getWidth()*i, manager.screen.getHeight()/2); 
             }
             
-            else {
-                
-                currentButton.setPosition(0 + currentButton.getWidth()*(i-5), 0);
-                
+            else {  
+                currentButton.setPosition(0 + currentButton.getWidth()*(i-5), 0);  
             }
-            
-            Element e = new Element(manager.screen, ""+i ,new Vector2f(12f,12f),new Vector2f(12f,12f),new Vector4f(5,5,5,5), "Textures/" + manager.getMatList().get(i) + ".png");
-            currentButton.addChild(e);
-            e.setDimensions(currentButton.getWidth() - 2f, currentButton.getHeight() - 2f);
-            e.setPosition(currentButton.getWidth()/2 - e.getWidth()/2,currentButton.getHeight()/2 - e.getHeight()/2);
             
             i++;
             if (i>=10)
             break;
             
         }
-        
-    }
-    
-    private String assignValue(int i) {
-    
-        String value = "";
-        
-        switch(i+1) {
-        
-            case 1:
-                value = "1";
-                break;
-            case 2:
-                value = "2";
-                break;
-            case 3:
-                value = "3";
-                break;
-            case 4:
-                value = "4";
-                break;
-            case 5:
-                value = "5";
-                break;
-            case 6:
-                value = "circle";
-                break;
-            case 7:
-                value = "square";
-                break;
-            case 8:
-                value = "start";
-                break;
-            case 9:
-                value = "triangle";
-                break;
-            case 10:
-                value = "heart";
-                break;
-        
-        }
-       
-        return value;
         
     }
     

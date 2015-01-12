@@ -38,8 +38,10 @@ public class StatsScreen extends GuiScreen {
         
         };
         
+        backButton.setDimensions(manager.screen.getWidth()/3, manager.screen.getHeight()/5);
         backButton.setText("Back");
         manager.screen.addElement(backButton);
+        backButton.setPosition(manager.screen.getWidth()/2 -  backButton.getWidth()/2, manager.screen.getHeight()/5);
         backButton.hide();
         
     }
@@ -51,6 +53,7 @@ public class StatsScreen extends GuiScreen {
     
     @Override
     public void show() {
+        super.show();
         backButton.show();
     }
     

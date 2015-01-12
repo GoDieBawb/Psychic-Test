@@ -5,6 +5,7 @@
 package mygame.Gui;
 
 import com.jme3.math.Vector2f;
+import com.jme3.math.Vector4f;
 import tonegod.gui.controls.buttons.ButtonAdapter;
 import tonegod.gui.core.Screen;
 
@@ -16,8 +17,8 @@ public class SymbolButton extends ButtonAdapter {
     
     private String value;
     
-    public SymbolButton(Screen screen, String name, Vector2f size) {
-        super(screen, name, size);
+    public SymbolButton(Screen screen, String name, Vector2f size, Vector2f position, Vector4f resizeBorders, String texturePath) {
+        super(screen, name, size, position, resizeBorders, texturePath);
     }
     
     public void setValue(String value){

@@ -38,8 +38,10 @@ public class StartScreen extends GuiScreen {
             
         };
         
-        startButton.setText("Start");
+        startButton.setDimensions(manager.screen.getWidth()/3, manager.screen.getHeight()/5);
+        startButton.setPosition(manager.screen.getWidth()/2 - startButton.getWidth()/2, manager.screen.getHeight()/2 - startButton.getHeight() * 2);
         manager.screen.addElement(startButton);
+        startButton.setText("Start");
         
     }
     
@@ -57,14 +59,17 @@ public class StartScreen extends GuiScreen {
         
         };
         
-        statsButton.setText("Stats");
+        statsButton.setDimensions(manager.screen.getWidth()/3, manager.screen.getHeight()/5);
+        statsButton.setPosition(manager.screen.getWidth()/2 - statsButton.getWidth()/2, manager.screen.getHeight()/2);
         manager.screen.addElement(statsButton);
+        statsButton.setText("Stats");
     
     }
     
     @Override
     public void show() {
         
+        super.show();
         startButton.show();
         statsButton.show();
         

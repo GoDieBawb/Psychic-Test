@@ -38,8 +38,10 @@ public class SymbolScreen extends GuiScreen {
             
         };
         
+        finishButton.setDimensions(manager.screen.getWidth()/3, manager.screen.getHeight()/5);
         finishButton.setText("Finish");
         manager.screen.addElement(finishButton);
+        finishButton.setPosition(manager.screen.getWidth()/2 - finishButton.getWidth()/2, manager.screen.getHeight()/5);
         finishButton.hide();
         
     }
@@ -54,6 +56,7 @@ public class SymbolScreen extends GuiScreen {
     @Override
     public void show() {
         
+        super.show();
         finishButton.show();
         
     }
