@@ -8,6 +8,10 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
+import com.jme3.asset.TextureKey;
+import com.jme3.material.Material;
+import com.jme3.texture.Texture;
+import java.util.ArrayList;
 import mygame.Gui.GuiScreen;
 import mygame.Gui.SelectionScreen;
 import mygame.Gui.StartScreen;
@@ -21,25 +25,88 @@ import tonegod.gui.core.Screen;
  */
 public class GameManager extends AbstractAppState {
     
-    private GuiScreen     startScreen;
-    private GuiScreen     selectScreen;
-    private GuiScreen     statsScreen;
-    private GuiScreen     symbolScreen;
-    private SymbolManager symbolManager;
-    public  Screen        screen;
+    private GuiScreen           startScreen;
+    private GuiScreen           selectScreen;
+    private GuiScreen           statsScreen;
+    private GuiScreen           symbolScreen;
+    private SymbolManager       symbolManager;
+    private ArrayList<String>   matList;
+    public  SimpleApplication   app;
+    public  Screen              screen;
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
 
-        screen = new Screen(app, "tonegod/gui/style/atlasdef/style_map.gui.xml");
-        screen.setUseTextureAtlas(true,"tonegod/gui/style/atlasdef/atlas.png");
-        ( (SimpleApplication) app).getGuiNode().addControl(screen);
+        this.app = (SimpleApplication) app;
+        createMatList();
+        createScreen();
         createStartScreen();
         createSelectionScreen();
         createSymbolScreen();
         createStatsScreen();
         createSymbolManager();
 
+    }
+    
+    private void createMatList() {
+        
+        matList = new ArrayList();
+        int i   = 1;
+        
+        while(true) {
+        
+            Material mat = new Material(app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+            String matPath = "";
+            
+            switch(i) {
+            
+                case 1:
+                    matPath = "One";
+                    break;
+                case 2:
+                    matPath = "Two";
+                    break;
+                case 3:
+                    matPath = "Three";
+                    break;
+                case 4:
+                    matPath = "Four";
+                    break;
+                case 5:
+                    matPath = "Five";
+                    break;
+                case 6:
+                    matPath = "Circle";
+                    break;
+                case 7:
+                    matPath = "Square";
+                    break;
+                case 8:
+                    matPath = "Star";
+                    break;
+                case 9:
+                    matPath = "Triangle";
+                    break;
+                case 10:
+                    matPath = "Heart";
+                    break;
+                    
+            }
+
+            matList.add(matPath);
+            
+            i++;
+            if (i>=11)
+            break;
+            
+        }
+        
+    }
+    
+    private void createScreen() {
+        screen = new Screen(app, "tonegod/gui/style/atlasdef/style_map.gui.xml");
+        screen.setUseTextureAtlas(true,"tonegod/gui/style/atlasdef/atlas.png");
+        app.getGuiNode().addControl(screen);
     }
     
     private void createStartScreen() {
@@ -60,6 +127,10 @@ public class GameManager extends AbstractAppState {
     
     private void createSymbolManager() {
         symbolManager = new SymbolManager();
+    }
+    
+    public ArrayList<String>  getMatList() {
+        return matList;
     }
     
     public GuiScreen getStartScreen() {

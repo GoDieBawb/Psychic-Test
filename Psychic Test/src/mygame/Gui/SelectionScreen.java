@@ -6,8 +6,12 @@ package mygame.Gui;
 
 import mygame.GameManager;
 import com.jme3.input.event.MouseButtonEvent;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
+import com.jme3.math.Vector4f;
 import java.util.ArrayList;
+import tonegod.gui.core.Element;
 
 /**
  *
@@ -44,7 +48,6 @@ public class SelectionScreen extends GuiScreen {
             };
             
             currentButton.setValue(assignValue(i));
-            currentButton.setText(String.valueOf(i+1));
             buttonList.add(currentButton);
             manager.screen.addElement(currentButton);
             currentButton.hide();
@@ -56,8 +59,15 @@ public class SelectionScreen extends GuiScreen {
             }
             
             else {
-                currentButton.setPosition(0 + currentButton.getWidth()*(i-5), 0); 
+                
+                currentButton.setPosition(0 + currentButton.getWidth()*(i-5), 0);
+                
             }
+            
+            Element e = new Element(manager.screen, ""+i ,new Vector2f(12f,12f),new Vector2f(12f,12f),new Vector4f(5,5,5,5), "Textures/" + manager.getMatList().get(i) + ".png");
+            currentButton.addChild(e);
+            e.setDimensions(currentButton.getWidth() - 2f, currentButton.getHeight() - 2f);
+            e.setPosition(currentButton.getWidth()/2 - e.getWidth()/2,currentButton.getHeight()/2 - e.getHeight()/2);
             
             i++;
             if (i>=10)
