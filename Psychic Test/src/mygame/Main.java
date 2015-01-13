@@ -16,7 +16,7 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
    
-        setShowSettings(false);
+        //setShowSettings(false);
         setDisplayFps(false);
         setDisplayStatView(false);
         stateManager.attach(new GameManager());

@@ -7,6 +7,7 @@ package mygame.Gui;
 import mygame.GameManager;
 import com.jme3.input.event.MouseButtonEvent;
 import com.jme3.math.Vector2f;
+import com.jme3.math.Vector4f;
 import tonegod.gui.controls.buttons.ButtonAdapter;
 
 /**
@@ -26,7 +27,10 @@ public class StatsScreen extends GuiScreen {
     
     private void createBackButton() {
     
-        backButton = new ButtonAdapter(manager.screen, "Back Button", new Vector2f(12, 12)) {
+        Vector2f v1 = new Vector2f();
+        Vector4f v2 = new Vector4f();
+        
+        backButton = new ButtonAdapter(manager.screen, "Back Button", v1, v1, v2, "Textures/BackButton.png") {
         
             @Override
             public void onButtonMouseLeftUp(MouseButtonEvent evt, boolean toggle){
@@ -39,7 +43,6 @@ public class StatsScreen extends GuiScreen {
         };
         
         backButton.setDimensions(manager.screen.getWidth()/3, manager.screen.getHeight()/5);
-        backButton.setText("Back");
         manager.screen.addElement(backButton);
         backButton.setPosition(manager.screen.getWidth()/2 -  backButton.getWidth()/2, manager.screen.getHeight()/5);
         backButton.hide();
@@ -55,6 +58,7 @@ public class StatsScreen extends GuiScreen {
     public void show() {
         super.show();
         backButton.show();
+        backButton.setZOrder(1);
     }
     
 }

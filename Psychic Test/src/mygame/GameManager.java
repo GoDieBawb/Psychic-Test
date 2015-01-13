@@ -73,6 +73,9 @@ public class GameManager extends AbstractAppState {
         
         panelTwo.setPosition(screen.getWidth()/2, 0);
         
+        panelTwo.setZOrder(0);
+        panelTwo.setZOrder(0);
+        
     }
     
     private void removeBackground() {

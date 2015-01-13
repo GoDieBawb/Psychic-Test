@@ -49,19 +49,19 @@ public class Symbol {
             switch (chance) {
             
                 case 1:
-                    value = "circle";
+                    value = "Circle";
                     break;
                 case 2:
-                    value = "square";
+                    value = "Square";
                     break;
                 case 3:
-                    value = "star";
+                    value = "Star";
                     break;
                 case 4:
-                    value = "triangle";
+                    value = "Triangle";
                     break;
                 case 5:
-                    value = "heart";
+                    value = "Heart";
                     break;
                 
             }
@@ -70,7 +70,24 @@ public class Symbol {
         
         else {
             
-            value = Integer.toString(chance); 
+            switch (chance) {
+                case 1:
+                    value = "One";
+                    break;
+                case 2:
+                    value = "Two";
+                    break;
+                case 3:
+                    value = "Three";
+                    break;
+                case 4:
+                    value = "Four";
+                    break;
+                case 5:
+                    value = "Five";
+                    break;
+            }
+            
         }
     
     }

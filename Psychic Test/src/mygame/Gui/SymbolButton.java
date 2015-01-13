@@ -21,7 +21,7 @@ public class SymbolButton extends ButtonAdapter {
         super(screen, name, size, position, resizeBorders, texturePath);
     }
     
-    public void setValue(String value){
+    public void setValue(String value) {
         this.value = value;
     }
     
