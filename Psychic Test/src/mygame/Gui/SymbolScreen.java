@@ -28,8 +28,10 @@ public class SymbolScreen extends GuiScreen {
         createFinishButton();
         createActualElement("Circle");
         createChosenElement("Circle");
+        createBooleanElement(false);
         actualElement.hide();
         chosenElement.hide();
+        booleanElement.hide();
         
     }
     
@@ -68,6 +70,8 @@ public class SymbolScreen extends GuiScreen {
         createActualElement(actual);
         createChosenElement(choice);
         
+        createBooleanElement(actual.equals(choice));
+        
     }
     
     private void createActualElement(String actual) {
@@ -78,7 +82,7 @@ public class SymbolScreen extends GuiScreen {
         actualElement = new Element(manager.screen, "Actual Element", v1, v1, v2, "Textures/" + actual + ".png");
         manager.screen.addElement(actualElement);
         actualElement.setDimensions(manager.screen.getWidth()/4, manager.screen.getWidth()/4);
-        actualElement.setPosition((manager.screen.getWidth()/2 - actualElement.getWidth()/2) + actualElement.getWidth(), manager.screen.getHeight()/2f);
+        actualElement.setPosition((manager.screen.getWidth()/2 - actualElement.getWidth()/2) + actualElement.getWidth()*1.25f, manager.screen.getHeight()/2f);
         actualElement.setZOrder(1);
         
     }
@@ -91,8 +95,28 @@ public class SymbolScreen extends GuiScreen {
         chosenElement = new Element(manager.screen, "Chosen Element", v1, v1, v2, "Textures/" + choice + ".png");
         manager.screen.addElement(chosenElement);
         chosenElement.setDimensions(manager.screen.getWidth()/4, manager.screen.getWidth()/4);
-        chosenElement.setPosition((manager.screen.getWidth()/2 - chosenElement.getWidth()/2) - chosenElement.getWidth(), manager.screen.getHeight()/2f);
+        chosenElement.setPosition((manager.screen.getWidth()/2 - chosenElement.getWidth()/2) - chosenElement.getWidth()*1.25f, manager.screen.getHeight()/2f);
         chosenElement.setZOrder(1);
+        
+    }
+    
+    private void createBooleanElement(boolean outcome) {
+    
+        String imagePath;
+        
+        if (outcome)
+        imagePath = "RightImage";
+        else
+        imagePath = "WrongImage";
+        
+        Vector2f v1 = new Vector2f();
+        Vector4f v2 = new Vector4f();
+        
+        booleanElement = new Element(manager.screen, "Boolean Element", v1, v1, v2, "Textures/" + imagePath + ".png");
+        manager.screen.addElement(booleanElement);
+        booleanElement.setDimensions(manager.screen.getWidth()/3, manager.screen.getWidth()/6f);
+        booleanElement.setPosition(manager.screen.getWidth()/2 - booleanElement.getWidth()/2, manager.screen.getHeight() - booleanElement.getHeight()*1.25f);
+        booleanElement.setZOrder(1);
         
     }
     
@@ -102,6 +126,7 @@ public class SymbolScreen extends GuiScreen {
         
         manager.screen.removeElement(manager.screen.getElementById("Actual Element"));
         manager.screen.removeElement(manager.screen.getElementById("Chosen Element"));
+        manager.screen.removeElement(manager.screen.getElementById("Boolean Element"));
         
         }
         
@@ -117,6 +142,7 @@ public class SymbolScreen extends GuiScreen {
         finishButton.hide();
         actualElement.hide();
         chosenElement.hide();
+        booleanElement.hide();
         
     }
     
@@ -128,6 +154,7 @@ public class SymbolScreen extends GuiScreen {
         actualElement.setZOrder(1);
         chosenElement.setZOrder(1);
         finishButton.setZOrder(1);
+        booleanElement.setZOrder(1);
         
     }
     
