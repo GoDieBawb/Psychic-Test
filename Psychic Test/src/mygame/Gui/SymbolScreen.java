@@ -8,6 +8,7 @@ import mygame.GameManager;
 import com.jme3.input.event.MouseButtonEvent;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector4f;
+import mygame.StatsManager;
 import tonegod.gui.controls.buttons.ButtonAdapter;
 import tonegod.gui.core.Element;
 
@@ -70,7 +71,11 @@ public class SymbolScreen extends GuiScreen {
         createActualElement(actual);
         createChosenElement(choice);
         
-        createBooleanElement(actual.equals(choice));
+        boolean outcome = actual.equals(choice);
+        createBooleanElement(outcome);
+        
+        StatsManager sm = ((StatsScreen)manager.getStatsScreen()).getStatsManager();
+        sm.saveTotals(outcome, manager.app.getStateManager());
         
     }
     
