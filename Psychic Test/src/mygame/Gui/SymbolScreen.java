@@ -26,6 +26,10 @@ public class SymbolScreen extends GuiScreen {
         
         super(manager);
         createFinishButton();
+        createActualElement("Circle");
+        createChosenElement("Circle");
+        actualElement.hide();
+        chosenElement.hide();
         
     }
     
@@ -72,7 +76,10 @@ public class SymbolScreen extends GuiScreen {
         Vector4f v2 = new Vector4f();
         
         actualElement = new Element(manager.screen, "Actual Element", v1, v1, v2, "Textures/" + actual + ".png");
-        actualElement.setDimensions(manager.screen.getWidth()/3, manager.screen.getWidth()/3);
+        manager.screen.addElement(actualElement);
+        actualElement.setDimensions(manager.screen.getWidth()/4, manager.screen.getWidth()/4);
+        actualElement.setPosition((manager.screen.getWidth()/2 - actualElement.getWidth()/2) + actualElement.getWidth(), manager.screen.getHeight()/2f);
+        actualElement.setZOrder(1);
         
     }
     
@@ -82,7 +89,10 @@ public class SymbolScreen extends GuiScreen {
         Vector4f v2 = new Vector4f();
         
         chosenElement = new Element(manager.screen, "Chosen Element", v1, v1, v2, "Textures/" + choice + ".png");
-        chosenElement.setDimensions(manager.screen.getWidth()/3, manager.screen.getWidth()/3);
+        manager.screen.addElement(chosenElement);
+        chosenElement.setDimensions(manager.screen.getWidth()/4, manager.screen.getWidth()/4);
+        chosenElement.setPosition((manager.screen.getWidth()/2 - chosenElement.getWidth()/2) - chosenElement.getWidth(), manager.screen.getHeight()/2f);
+        chosenElement.setZOrder(1);
         
     }
     
@@ -105,6 +115,8 @@ public class SymbolScreen extends GuiScreen {
     public void hide() {
         
         finishButton.hide();
+        actualElement.hide();
+        chosenElement.hide();
         
     }
     
@@ -113,6 +125,8 @@ public class SymbolScreen extends GuiScreen {
         
         super.show();
         finishButton.show();
+        actualElement.setZOrder(1);
+        chosenElement.setZOrder(1);
         finishButton.setZOrder(1);
         
     }
