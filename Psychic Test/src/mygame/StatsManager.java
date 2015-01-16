@@ -133,9 +133,6 @@ public class StatsManager {
     
         total = total + 1;
         
-        int rightBefore = rightCount;
-        int wrongBefore = wrongCount;
-        
         if(outcome) {
             rightCount = rightCount + 1;
         }
