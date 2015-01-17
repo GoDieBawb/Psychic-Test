@@ -54,10 +54,11 @@ public class StatsManager {
           FileInputStream fi   = new FileInputStream(file);
           Object obj           = yaml.load(fi);
           map                  = (LinkedHashMap) obj;
+          fi.close();
           
       }
       
-      catch (FileNotFoundException e) {
+      catch (Exception e) {
           
           total      = 0;
           rightCount = 0;
@@ -72,7 +73,7 @@ public class StatsManager {
       wrongCount = (Integer)  map.get("Wrong");
       total      = (Integer)  map.get("Total");
       
-  }
+    }
   
     public void saveInfo(AppStateManager stateManager) {
       
@@ -115,7 +116,7 @@ public class StatsManager {
       
       }
   
-  }
+    }
     
     public int getTotal() {
         return total;

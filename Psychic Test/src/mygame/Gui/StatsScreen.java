@@ -12,7 +12,6 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector4f;
 import mygame.StatsManager;
 import tonegod.gui.controls.buttons.ButtonAdapter;
-import tonegod.gui.controls.text.LabelElement;
 import tonegod.gui.core.Element;
 
 /**
@@ -51,8 +50,9 @@ public class StatsScreen extends GuiScreen {
     private void displayStats() {
     
         getStats();
+        float ratio = Float.valueOf(rightCount)/Float.valueOf(wrongCount);
         display.setFontSize(50f);
-        display.setText("Total: " + total + System.getProperty("line.separator") + " Right Count: " + rightCount + System.getProperty("line.separator") + " Wrong Count: " + wrongCount);
+        display.setText("Total Attempts: " + total + System.getProperty("line.separator") + " Right Count: " + rightCount + System.getProperty("line.separator") + " Wrong Count: " + wrongCount + System.getProperty("line.separator") + "Rank: " + getRank(ratio));
         display.setTextAlign(BitmapFont.Align.Center);
         display.show();
         display.setZOrder(1);
@@ -63,12 +63,12 @@ public class StatsScreen extends GuiScreen {
         
         Vector2f v1     = new Vector2f();
         Vector4f v2     = new Vector4f();
-        BitmapFont font = stateManager.getApplication().getAssetManager().loadFont("Interface/Fonts/CrackedJohnnie.fnt");
+        //BitmapFont font = stateManager.getApplication().getAssetManager().loadFont("Interface/Fonts/CrackedJohnnie.fnt");
         display         = new Element(manager.screen, "Stats Display", v1, v1, v2, "Textures/paper.jpg");
         //display.setFont(font);
         manager.screen.addElement(display);
-        display.setDimensions(manager.screen.getWidth()/2, manager.screen.getHeight()/2); 
-        display.setPosition(manager.screen.getWidth()/2 - display.getWidth()/2, manager.screen.getHeight()/2 -  display.getWidth()/10);
+        display.setDimensions(manager.screen.getWidth()/1.25f, manager.screen.getHeight()/2); 
+        display.setPosition(manager.screen.getWidth()/2 - display.getWidth()/2, manager.screen.getHeight()/2 -  display.getWidth()/15);
         display.hide();
         
     }
@@ -95,6 +95,45 @@ public class StatsScreen extends GuiScreen {
         backButton.setPosition(manager.screen.getWidth()/2 -  backButton.getWidth()/2, manager.screen.getHeight()/5);
         backButton.hide();
         
+    }
+    
+    private String getRank(float ratio) {
+    
+        String rank;
+
+        if (ratio > .5f) {
+            rank = "Disturbingly Psychic";
+        }
+        
+        else if (ratio > .25f) {
+            rank = "Extremely Psychic";
+        }
+            
+        else if (ratio > .15f) {
+            rank = "Slightly Psychic";
+        }
+        
+        else if (ratio > .10f) {
+            rank = "Average";
+        }
+        
+        else if (ratio > .8f) {
+            rank = "Not Psychic";
+        }
+        
+        else if (ratio > .5f) {
+            rank = "Anti Psychic";
+        }
+            
+        else if (ratio > .1f) {
+            rank = "Disturbingly Anti Psychic";
+        }
+        
+        else {
+            rank = "More Information Needed";
+        }
+        
+        return rank;
     }
     
     public StatsManager getStatsManager() {

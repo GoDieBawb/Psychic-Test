@@ -30,8 +30,7 @@ public class InteractionManager extends AbstractAppState implements ActionListen
         this.app          = (SimpleApplication) app;
         this.stateManager = this.app.getStateManager();
         this.inputManager = this.app.getInputManager();
-        this.inputManager.setCursorVisible(true);
-        this.inputManager.setSimulateMouse(true);
+        inputManager.setCursorVisible(true);
         setUpKeys();
         
     }

@@ -76,6 +76,7 @@ public class GameManager extends AbstractAppState {
         panelTwo.setZOrder(0);
         panelTwo.setZOrder(0);
         
+        
     }
     
     private void removeBackground() {
@@ -159,6 +160,7 @@ public class GameManager extends AbstractAppState {
         screen = new Screen(app, "tonegod/gui/style/atlasdef/style_map.gui.xml");
         screen.setUseTextureAtlas(true,"tonegod/gui/style/atlasdef/atlas.png");
         app.getGuiNode().addControl(screen);
+        screen.setUseMultiTouch(true);
     }
     
     private void createStartScreen() {
